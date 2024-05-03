@@ -12,8 +12,6 @@ function init() {
   // const soundType = document.getElementById('audio-selection');
   const playSoundButton = document.querySelector('button');
 
-  //console.log(hornselect);
-
   hornSelect.addEventListener('change', function(){ //OK
     alert("hi");
   });
