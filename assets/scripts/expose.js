@@ -8,19 +8,21 @@ function init() {
   //console.log(option);
   const hornSelect = document.getElementById('horn-select');
   const volume = document.getElementById('volume');
-  const volumeIcon = document.querySelector('.icons img');
+  const volumeIcon = document.querySelector("[alt='Volume level 2']");
   const soundType = document.getElementById('audio-selection');
   const playSoundButton = document.getElementById('play-button');
 
-  hornSelect.addEventListener('change', function(){
+  console.log(volumeIcon);
 
-  });
+  //hornSelect.addEventListener('change', function(){
+    
+  //});
 
-  volume.addEventListener('input', function(){
+  //volume.addEventListener('input', function(){
 
-  });
+  //});
 
-  playSoundButton.addEventListener('click', function(){
+  //playSoundButton.addEventListener('click', function(){
 
-  });
+  //});
 }
