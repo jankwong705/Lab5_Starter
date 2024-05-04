@@ -7,11 +7,13 @@ function init() {
   //var option = document.querySelector("[value='select']");
   //console.log(option);
   const hornSelect = document.getElementById("horn-select");
+  const image = document.querySelector("[alt='No image selected']");
   const volume = document.getElementById('volume');
   const volumeIcon = document.querySelector("[alt='Volume level 2']");
-  const image = document.querySelector("[alt='No image selected']");
-  // const soundType = document.getElementById('audio-selection');
   const playSoundButton = document.querySelector('button');
+  const audio = document.querySelector("audio.hidden");
+
+  const jsConfetti = new JSConfetti();
 
   hornSelect.addEventListener('change', function(){ //OK
     switch (hornSelect.value) {
@@ -45,7 +47,14 @@ function init() {
     audio.volume = volume.value / 100;
   });
 
-  playSoundButton.addEventListener('click', function(){ //OK
-    alert("hi");
+  /*setTimeout(() => {
+    jsConfetti.addConfetti();
+  }, 500);*/
+
+  playSoundButton.addEventListener('click', () =>{ //OK
+      audio.play();
+      if(hornSelect.value == "party-horn"){
+        jsConfetti.addConfetti();
+      }
   });
 }
