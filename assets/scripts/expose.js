@@ -10,7 +10,6 @@ function init() {
   const volume = document.getElementById('volume');
   const volumeIcon = document.querySelector("[alt='Volume level 2']");
   const image = document.querySelector("[alt='No image selected']");
-  // const soundType = document.getElementById('audio-selection');
   const playSoundButton = document.querySelector('button');
 
   hornSelect.addEventListener('change', function(){ //OK
