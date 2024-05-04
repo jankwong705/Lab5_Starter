@@ -43,3 +43,21 @@ test('expect jykwongucsd.edu true', () => {
 test('expect jykwong@ucsdedu true', () => {
   expect(isEmail('jykwong@ucsdedu')).toBe(false);
 });
+
+//test isStrongPassword
+test('expect A88888_2 true', () => {
+  expect(isStrongPassword('A88888_2')).toBe(true);
+});
+
+test('expect A888 true', () => {
+  expect(isStrongPassword('A888')).toBe(true);
+});
+
+test('expect A8 true', () => {
+  expect(isStrongPassword('A8')).toBe(false);
+});
+
+test('expect Adkjfdsfhduhkdsff8 true', () => {
+  expect(isStrongPassword('Adkjfdsfhduhkdsff8')).toBe(false);
+});
+
