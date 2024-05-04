@@ -42,6 +42,7 @@ function init() {
     } else if(volume.value >= 67){
       volumeIcon.src = "assets/icons/volume-level-3.svg";
     }
+    audio.volume = volume.value / 100;
   });
 
   playSoundButton.addEventListener('click', function(){ //OK
