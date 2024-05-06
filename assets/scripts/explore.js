@@ -9,7 +9,7 @@ function init() {
   const voiceSelect = document.getElementById("voice-select");
   const talkButton = document.querySelector('button');
   const smileImg = document.querySelector("[alt='Smiling face']");
-  const text = document.getElementById('text-to-speak');
+  const text = document.getElementById("text-to-speak");
 
   let voices = [];
   function populateVoiceList() {
@@ -43,15 +43,20 @@ function init() {
     }
   }
 
-  smileImg.addEventListener('change', function(){ // Not good
-  if(synth.speaking)
-    smileImg.src = "assets/images/smiling-open.png";
-  else
-    smileImg.src = "assets/images/smiling.png";
-});
+  smileImg.addEventListener('change', function(){ // Not good 
+    if(synth.speaking) {
+      smileImg.src = "assets/images/smiling-open.png";
+    }
+    else {
+      smileImg.src = "assets/images/smiling.png";
+    }
+  });
 
   talkButton.addEventListener('click', () => {// Not good
     synth.speak(utterThis);
+    while(synth.speaking) {
+      smileImg.src = "assets/images/smiling-open.png";
+    }
+    smileImg.src = "assets/images/smiling.png";
   });
-
-  }
+}
