@@ -10,6 +10,7 @@ function init() {
   const talkButton = document.querySelector('button');
   const smileImg = document.querySelector("[alt='Smiling face']");
   const text = document.getElementById("text-to-speak");
+  
 
   let voices = [];
   function populateVoiceList() {
@@ -34,29 +35,21 @@ function init() {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
-  const utterThis = new SpeechSynthesisUtterance(text.value);
-  const selectedOption =
-    voiceSelect.selectedOptions[0].getAttribute("data-name");
-  for (let i = 0; i < voices.length; i++) {
-    if (voices[i].name === selectedOption) {
-      utterThis.voice = voices[i];
+  talkButton.addEventListener('click', () => {
+    const utterThis = new SpeechSynthesisUtterance(text.value);
+    const selectedOption =
+      voiceSelect.selectedOptions[0].getAttribute("data-name");
+    for (let i = 0; i < voices.length; i++) {
+      if (voices[i].name === selectedOption) {
+        utterThis.voice = voices[i];
+        break;
+      }
     }
-  }
-
-  smileImg.addEventListener('change', function(){ // Not good 
-    if(synth.speaking) {
-      smileImg.src = "assets/images/smiling-open.png";
-    }
-    else {
-      smileImg.src = "assets/images/smiling.png";
-    }
-  });
-
-  talkButton.addEventListener('click', () => {// Not good
     synth.speak(utterThis);
-    while(synth.speaking) {
-      smileImg.src = "assets/images/smiling-open.png";
-    }
-    smileImg.src = "assets/images/smiling.png";
+    smileImg.src = "assets/images/smiling-open.png";
+
+    utterThis.onend = () => {
+      smileImg.src = "assets/images/smiling.png";
+    };
   });
 }
