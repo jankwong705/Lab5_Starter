@@ -5,13 +5,12 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
   // TODO
   const synth = window.speechSynthesis;
-
+  const smileImg = document.querySelector("[alt='Smiling face']");
   const voiceSelect = document.getElementById("voice-select");
   const talkButton = document.querySelector('button');
-  const smileImg = document.querySelector("[alt='Smiling face']");
   const text = document.getElementById("text-to-speak");
   
-
+  //populate voiceSelect menu
   let voices = [];
   function populateVoiceList() {
     voices = synth.getVoices();
@@ -31,24 +30,25 @@ function init() {
   }
   
   populateVoiceList();
+
   if (speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
+  //play sound when clicked
   talkButton.addEventListener('click', () => {
     const utterThis = new SpeechSynthesisUtterance(text.value);
     const selectedOption =
       voiceSelect.selectedOptions[0].getAttribute("data-name");
-    for (let i = 0; i < voices.length; i++) {
-      if (voices[i].name === selectedOption) {
-        utterThis.voice = voices[i];
-        break;
-      }
-    }
-    synth.speak(utterThis);
-    smileImg.src = "assets/images/smiling-open.png";
+    const selectedVoice = voices.find(voice => voice.name === selectedOption);
+    utterThis.voice = selectedVoice;
 
+    synth.speak(utterThis);
+
+    //change image when speaking
+    smileImg.src = "assets/images/smiling-open.png";
     utterThis.onend = () => {
+      console.log('Speech ended');
       smileImg.src = "assets/images/smiling.png";
     };
   });
